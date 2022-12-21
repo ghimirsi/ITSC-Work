@@ -1,4 +1,4 @@
-# OCAT - ITSC Internship Project
+# OCAT - ITSC Internship Project - something
 
 In this project, you will have the opportunity to explore the basics of web development operations as carried out at the ITSC. You will learn about some of the core technologies we use to build web application and ecosystems such as [React.js](https://reactjs.org/), [Node.js](https://nodejs.org/en/) with the [Express](http://expressjs.com/) Framework, and other libraries and tools. Below, you'll find a comprehensive list of all the technologies used in this project.
 
