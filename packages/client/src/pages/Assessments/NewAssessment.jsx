@@ -17,7 +17,7 @@ export const NewAssessment = () => {
   // const onSubmit = async (data) => {/
   // await AssessmentService.submit(data);
   // };
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const { Question1, Question2, Question3, Question4, Question5 } = data;
 
     const sum = parseInt(Question1) +
@@ -25,8 +25,10 @@ export const NewAssessment = () => {
     parseInt(Question3) +
     parseInt(Question4) +
     parseInt(Question5);
+    // eslint-disable-next-line no-console
     console.log(sum);
     setPoints(sum);
+    await AssessmentService.submit(data);
   };
 
   const value1 = watch(`Question1`);
@@ -46,14 +48,12 @@ export const NewAssessment = () => {
   }, [ value1, value2, value3, value4, value5 ]);
 
   return (
-
     <>
-      <form onSubmit={handleSubmit(onSubmit)} />
       <h1>CAT BE INSTRUMENT</h1>
       <h1> User Score: {points} </h1>
 
       <br />
-      <Form onSubmit={handleSubmit((data) => console.log(data))}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="catName">
           <Form.Label>Cat Name:</Form.Label>
           <Form.Control type="text" placeholder="Enter Cat Name" {...register(`catName`, { required: true })} />
@@ -123,7 +123,7 @@ export const NewAssessment = () => {
         </Form.Group>
         {errors.q5 && <p>please select the option below.</p>}
 
-        <Form.Label>Range: low[0-1], Medium[2-3], high[4-5]</Form.Label>
+        <Form.Label>Risk Level: low[0-1], Medium[2-3], high[4-5]</Form.Label>
         <Form.Range />
         <Button variant="success" type="submit">Submit</Button>
 
