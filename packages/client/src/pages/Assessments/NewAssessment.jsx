@@ -1,11 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { AssessmentService } from '../../services/AssessmentService';
 
 const questionPoints = { value0: 0, value1: 1 };
 
+function riskLevel(score) {
+  switch (true) {
+    case score >= 2 && score <= 3:
+      return `Medium`;
+    case score >= 4 && score <= 5:
+      return `High`;
+    case score >= 0 && score <= 1:
+      return `Low`;
+    default:
+      return ``;
+  }
+}
 export const NewAssessment = () => {
   const [ points, setPoints ] = useState(0);
   const {
@@ -28,7 +39,9 @@ export const NewAssessment = () => {
     // eslint-disable-next-line no-console
     console.log(sum);
     setPoints(sum);
-    await AssessmentService.submit(data);
+    data.score = sum;
+    data.riskLevel = riskLevel(sum);
+    await AssessmentService.submit({ ...data, points });
   };
 
   const value1 = watch(`Question1`);
