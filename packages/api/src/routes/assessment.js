@@ -32,18 +32,19 @@ assessmentRouter.post(
 );
 
 assessmentRouter.get(
-  `/`,
-  // eslint-disable-next-line require-await
+  `/list`,
+
   async (req, res, next) => {
     try {
       // verify that your data is making it here to the API by using console.log();
       // call the AssessmentService.getList function from packages/api/src/microservices/Assessment-Service.js
-      const assessments = [];
+      const data = await AssessmentService.getList();
+      const results = data.map(assessment => assessment.dataValues);
 
       ResponseHandler(
         res,
         `Fetched assessments`,
-        { assessments },
+        results,
       );
     } catch (err) {
       next(err);
