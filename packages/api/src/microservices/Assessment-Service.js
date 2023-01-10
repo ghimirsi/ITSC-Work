@@ -14,6 +14,8 @@ exports.submit = async (assessment) =>
 exports.getList = () => {
   // use the sequelize model Assessments from packages/api/src/database/models to fetch
   // the assessment data from the PostgreSQL database
+  // trying to use pull request in git hub
+
   const assessments = [];
 
   return assessments;
