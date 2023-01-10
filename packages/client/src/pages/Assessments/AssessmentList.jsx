@@ -10,7 +10,7 @@ export const AssessmentList = () => {
       setAssessments(await AssessmentService.getList());
     };
     fetchAssessments();
-  }, []);
+  }, [ assessments ]);
 
   return (
     <div>
