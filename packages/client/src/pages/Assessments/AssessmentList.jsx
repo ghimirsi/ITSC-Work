@@ -7,10 +7,11 @@ export const AssessmentList = () => {
   // fetch all assessments using the AssessmentService.getList function from OCAT/client/services/AssessmentService.js
   useEffect(() => {
     const fetchAssessments = async () => {
-      setAssessments(await AssessmentService.getList());
+      const data = await AssessmentService.getList();
+      setAssessments(data);
     };
     fetchAssessments();
-  }, [ assessments ]);
+  }, [ ]);
 
   return (
     <div>
@@ -18,6 +19,7 @@ export const AssessmentList = () => {
           List goes here
           Please use the library react-table https://www.npmjs.com/package/react-table
       */}
+      <pre>{JSON.stringify(assessments, null, 2)}</pre>
     </div>
   );
 };
