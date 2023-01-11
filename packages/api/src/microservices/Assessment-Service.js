@@ -11,9 +11,16 @@ exports.submit = async (assessment) =>
     score: assessment.points,
   });
 
-exports.getList = () => {
+exports.getList = async () => {
   // use the sequelize model Assessments from packages/api/src/database/models to fetch
   // the assessment data from the PostgreSQL database
+  // chnaging to show demo for pull request
+  const users = await Assessment.findAll();
+
+  // eslint-disable-next-line no-console
+  console.log(users.every(user => user instanceof Assessment));
+  // eslint-disable-next-line no-console
+  console.log(`All users:`, JSON.stringify(users, null, 2));
   const assessments = [];
 
   return assessments;
