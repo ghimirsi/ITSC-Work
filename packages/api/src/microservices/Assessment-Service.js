@@ -1,4 +1,4 @@
-const { Assessment } = require(`../database/models`);
+import { Assessment } from '../database/models';
 
 exports.submit = async (assessment) =>
   // use the sequelize model Assessments from packages/api/src/database/models to save
@@ -11,10 +11,12 @@ exports.submit = async (assessment) =>
     score: assessment.points,
   });
 
-exports.getList = () => {
+exports.getList = async () => {
   // use the sequelize model Assessments from packages/api/src/database/models to fetch
   // the assessment data from the PostgreSQL database
-  const assessments = [];
+  // changing to show demo for pull request
+
+  const assessments = await Assessment.findAll(); // -> {id: 1, score: 2}
 
   return assessments;
 };
