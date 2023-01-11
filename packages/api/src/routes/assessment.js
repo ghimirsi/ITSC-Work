@@ -39,12 +39,11 @@ assessmentRouter.get(
       // verify that your data is making it here to the API by using console.log();
       // call the AssessmentService.getList function from packages/api/src/microservices/Assessment-Service.js
       const data = await AssessmentService.getList();
-      const results = data.map(assessment => assessment.dataValues);
 
       ResponseHandler(
         res,
         `Fetched assessments`,
-        results,
+        data,
       );
     } catch (err) {
       next(err);
