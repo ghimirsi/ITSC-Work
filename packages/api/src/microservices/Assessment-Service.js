@@ -11,6 +11,17 @@ exports.submit = async (assessment) =>
     score: assessment.points,
   });
 
+exports.delete = async (id) => {
+  const rowId = parseInt(id);
+  // eslint-disable-next-line no-console
+  console.log(id);
+  await Assessment.destroy({
+    where: {
+      id: rowId,
+    },
+  });
+};
+
 exports.getList = async () => {
   // use the sequelize model Assessments from packages/api/src/database/models to fetch
   // the assessment data from the PostgreSQL database
