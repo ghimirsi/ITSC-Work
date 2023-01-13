@@ -5,6 +5,11 @@ import { AssessmentService } from '../../services/AssessmentService';
 export const AssessmentList = () => {
   const [ assessments, setAssessments ] = useState([]);
 
+  const handleDelete = async (row) => {
+    console.log(row, ``);
+    await AssessmentService.delete(row.original.id);
+  };
+
   // fetch all assessments using the AssessmentService.getList function from OCAT/client/services/AssessmentService.js
   const columns = useMemo(() => [
 
@@ -42,7 +47,7 @@ export const AssessmentList = () => {
     },
     {
       Cell: ({ row }) =>
-        <button onClick={() => row.original}>Delete</button>,
+        <button onClick={() => handleDelete(row)}>Delete</button>,
       Header: `Delete`,
     },
 
@@ -90,7 +95,7 @@ export const AssessmentList = () => {
                 </th>)}
             </tr>)}
         </thead>
-        <tBody {...getTableBodyProps()}>
+        <tbody {...getTableBodyProps()}>
           {rows.map(row => {
             prepareRow(row);
             return (
@@ -111,7 +116,7 @@ export const AssessmentList = () => {
               </tr>
             );
           })}
-        </tBody>
+        </tbody>
       </table>
     </div>
   );
